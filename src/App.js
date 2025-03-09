@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+import BackgroundVideo from "./components/BackgroundVideo";
+import NavBar from "./components/NavBar";
+import Home from "./pages/home";
+import AboutMe from "./pages/aboutme";
+import Projects from "./pages/projects";
+import Music from "./pages/music";
 
 function App() {
+  const [activePage, setActivePage] = useState("HOME");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+        <BackgroundVideo/>
+        <NavBar setActivePage={setActivePage}/>
+        <div style={{
+            height: '90vh',
+            width: '100vw',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column'
+          }}>
+          
+          {activePage === "HOME" && <Home />}
+          {activePage === "ABOUT ME" && <AboutMe />}
+          {activePage === "CODING" && <Projects />}
+          {activePage === "MUSIC" && <Music />}
+        </div>
+      </div>
   );
 }
 
